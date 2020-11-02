@@ -1,5 +1,4 @@
 from flask import Blueprint, jsonify, request
-from typing import List
 
 from src.model import *
 
@@ -9,12 +8,12 @@ api = Blueprint("api_user", __name__)
 @api.route("/users", methods=["GET"])
 def get_all_users() -> object:
     try:
-        users: List[User] = db.session.query(User).all()
+        users = db.session.query(User).all()
     except BaseException as e:
         print(e)
         return jsonify({"status": "failed", "message": "Error while database session"})
 
-    response: object = {"status": "success", "users": [user.to_dict() for user in users]}
+    response = {"status": "success", "users": [user.to_dict() for user in users]}
     return jsonify(response)
 
 
@@ -24,12 +23,12 @@ def add_user() -> object:
         return jsonify({"status": "failed", "message": "Required argument is missing"})
 
     try:
-        user: User = User(id=int(request.form["id"]), name=request.form["name"])
+        user = User(id=int(request.form["id"]), name=request.form["name"])
         db.session.add(user)
         db.session.commit()
     except BaseException as e:
         print(e)
         return jsonify({"status": "failed", "message": "Error while database session"})
 
-    response: object = {"status": "success", "user": user.to_dict()}
+    response = {"status": "success", "user": user.to_dict()}
     return jsonify(response)
