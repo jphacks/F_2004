@@ -1,5 +1,8 @@
-from flask import Blueprint, jsonify, request
+import datetime
 from distutils.util import strtobool
+
+from flask import Blueprint, jsonify, request
+from sqlalchemy import desc
 
 from src.model import *
 
@@ -8,9 +11,22 @@ api = Blueprint("api_concentration_value", __name__)
 
 @api.route("/concentration_values/<int:user_id>", methods=["GET"])
 def get_concentration_values(user_id: int) -> object:
+    limit = request.args.get("limit", default=100, type=int)
+    date = request.args.get("date", default=None, type=str)
+
     try:
-        concentration_values: List[ConcentrationValue] = db.session.query(ConcentrationValue) \
-            .filter(ConcentrationValue.user_id == user_id) \
+        query = db.session.query(ConcentrationValue).filter(ConcentrationValue.user_id == user_id)
+
+        if date is not None:
+            one_day_after = datetime.datetime.strptime(date, "%Y-%m-%d") + datetime.timedelta(days=1)
+            query = query.filter(
+                ConcentrationValue.created_at >= date,
+                ConcentrationValue.created_at <= one_day_after,
+            )
+
+        concentration_values = query \
+            .order_by(desc(ConcentrationValue.created_at)) \
+            .limit(limit) \
             .all()
     except BaseException as e:
         print(e)
