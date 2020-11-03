@@ -43,6 +43,7 @@ def get_concentration_values(user_id: int) -> object:
 
 @api.route("/concentration_values", methods=["POST"])
 def add_concentration_value() -> object:
+    print(request.form)
     if not (
             "user_id" in request.form and
             "concentration_value" in request.form and
