@@ -49,12 +49,12 @@
 
 
 ## API Endpoint
-| URL | Method | Parameters |
-| --- | --- | --- |
-| /api/users | GET | |
-| /api/users | POST | id: int<br/>name: string |
-| /api/concentration_values/<user_id>| GET | |
-| /api/concentration_values| POST | user_id: int<br/>concentration_value:int<br/>is_sitting: boolean |
+| URL | Method | Parameters | description |
+| --- | --- | --- | --- |
+| /api/users | GET | | User list |
+| /api/users | POST | id: int<br/>name: string | Add user |
+| /api/concentration_values/<user_id>| GET | | Concentration_value list for specific user |
+| /api/concentration_values| POST | user_id: int<br/>concentration_value:int<br/>is_sitting: boolean | Add concentration_value for specific user |
 
 
 ## DB Schema
