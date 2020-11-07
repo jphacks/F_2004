@@ -37,20 +37,20 @@ def add_user() -> object:
 
 @api.route("/test", methods=["POST"])
 def test() -> object:
-    # body = request.get_data().decode()
-    # print(body)
-    #
-    # list = {}
-    # for item in body.split("&"):
-    #     split_item = item.split("=")
-    #     list[split_item[0]] = split_item[1]
-    #
-    # user_id = list["text"].split("+")[0]
-    #
-    # user = db.session.query(User).filter(User.id == user_id).first()
-    # user.is_watch = True
-    #
-    # db.session.commit()
+    body = request.get_data().decode()
+    print(body)
+
+    list = {}
+    for item in body.split("&"):
+        split_item = item.split("=")
+        list[split_item[0]] = split_item[1]
+
+    user_id = list["text"].split("+")[0]
+
+    user = db.session.query(User).filter(User.id == user_id).first()
+    user.is_watch = True
+
+    db.session.commit()
 
     response = {
         "text": "ユーザーのセットが完了しました！",
