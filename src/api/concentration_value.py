@@ -18,7 +18,8 @@ def get_concentration_values(user_id: int) -> object:
         query = db.session.query(ConcentrationValue).filter(ConcentrationValue.user_id == user_id)
 
         if date is not None:
-            one_day_after = datetime.datetime.strptime(date, "%Y-%m-%d") + datetime.timedelta(days=1)
+            one_day_after = datetime.datetime.strptime(date, "%Y-%m-%d") + datetime.timedelta(
+                days=1)
             query = query.filter(
                 ConcentrationValue.created_at >= date,
                 ConcentrationValue.created_at <= one_day_after,
@@ -51,11 +52,14 @@ def add_concentration_value() -> object:
     ):
         return jsonify({"status": "failed", "message": "Required argument is missing"})
 
+    user_id = request.form["user_id"]
+    is_sitting = request.form["is_sitting"]
+
     try:
         concentration_value = ConcentrationValue(
-            user_id=int(request.form["user_id"]),
+            user_id=int(user_id),
             concentration_value=int(request.form["concentration_value"]),
-            is_sitting=strtobool(request.form["is_sitting"]),
+            is_sitting=strtobool(is_sitting),
         )
         db.session.add(concentration_value)
         db.session.commit()
@@ -64,4 +68,20 @@ def add_concentration_value() -> object:
         return jsonify({"status": "failed", "message": "Error while database session"})
 
     response = {"status": "success", "concentration_value": concentration_value.to_dict()}
+
+    # if not is_sitting:
+    #     return jsonify(response)
+    #
+    # concentration_values = db.session.query(ConcentrationValue, User.name) \
+    #     .join(User, User.id == ConcentrationValue.user_id) \
+    #     .filter(User.id == user_id and User.is_watch) \
+    #     .order_by(desc(ConcentrationValue.created_at)) \
+    #     .all()
+    #
+    # now_con = concentration_values[0].ConcentrationValue.concentration_value
+    # pre_con = concentration_values[1].ConcentrationValue.concentration_value
+    # if now_con <= 2 and pre_con <= 2:
+    #     msg = concentration_values.User.name + "さん！　集中力が下がっています！　休憩しましょう！！"
+    #     print(msg)
+
     return jsonify(response)

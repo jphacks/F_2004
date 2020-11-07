@@ -53,7 +53,7 @@
 | --- | --- | --- | --- |
 | /api/users | GET | | User list |
 | /api/users | POST | id: int<br/>name: string | Add user |
-| /api/concentration_values/<user_id>| GET | | Concentration_value list for specific user |
+| /api/concentration_values/<user_id>| GET | limit: int<br/>date: Datetime | Concentration_value list for specific user |
 | /api/concentration_values| POST | user_id: int<br/>concentration_value:int<br/>is_sitting: boolean | Add concentration_value for specific user |
 
 

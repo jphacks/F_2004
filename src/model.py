@@ -9,6 +9,7 @@ class User(db.Model):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(100), nullable=False)
+    is_watch = db.Column(db.Boolean, default=False, nullable=False)
     created_at = db.Column(
         db.TIMESTAMP,
         server_default=current_timestamp(),
@@ -20,6 +21,7 @@ class User(db.Model):
         return dict(
             id=self.id,
             name=self.name,
+            is_watch=self.is_watch,
             created_at=self.created_at
         )
 
