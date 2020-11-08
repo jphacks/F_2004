@@ -1,6 +1,7 @@
 # Telework × Tech
 [![表紙-1](https://user-images.githubusercontent.com/50434558/98461410-35e48080-21ef-11eb-9d0f-c75f851d83f8.jpg)](https://youtu.be/IdvRumHTEvc)
 
+画像をクリックすると紹介動画に移動します．
 ## 使用リポジトリ一覧
 
 | Repository | Content |
