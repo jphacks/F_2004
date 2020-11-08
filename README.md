@@ -68,7 +68,7 @@
 //独自で開発したものの内容をこちらに記載してください．特に力を入れた部分をファイルリンク、またはcommit_idを記載してください。
 
 * 着座検知・集中力測定デバイス（ [F_2004_2](https://github.com/jphacks/F_2004_2)）
-* Arduino IDEで開発したデバイスを制御するプログラム（[Arduino.ino](https://github.com/jphacks/F_2004_2/tree/main/Device)）．
+* Arduino IDEで開発したデバイスを制御するプログラム（[Arduino.ino](https://github.com/jphacks/F_2004_2/tree/main/Device)）
 
 #### 製品に取り入れた研究内容（データ・ソフトウェアなど）（※アカデミック部門の場合のみ提出必須）
 [[1] 大久保　雅史，藤村　安那："加速度センサーを利用した集中度合い推定システムの提案"，WISS2008，2008](https://www.wiss.org/WISS2008Proceedings/posters/paper0038.pdf)
