@@ -1,5 +1,5 @@
 #  Telework × Tech
-[![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2020/09/JPHACKS2020_ogp.jpg)](https://youtu.be/IdvRumHTEvc)
+[![表紙-1](https://user-images.githubusercontent.com/50434558/98461410-35e48080-21ef-11eb-9d0f-c75f851d83f8.jpg)](https://youtu.be/IdvRumHTEvc)
 
 ## 使用リポジトリ一覧
 
@@ -65,8 +65,7 @@
 
 ### 独自技術
 #### ハッカソンで開発した独自機能・技術
-//独自で開発したものの内容をこちらに記載してください
-//特に力を入れた部分をファイルリンク、またはcommit_idを記載してください。
+//独自で開発したものの内容をこちらに記載してください．特に力を入れた部分をファイルリンク、またはcommit_idを記載してください。
 
 * 着座検知・集中力測定デバイス（ [F_2004_2](https://github.com/jphacks/F_2004_2)）
 * Arduino IDEで開発したデバイスを制御するプログラム（[Arduino.ino](https://github.com/jphacks/F_2004_2/tree/main/Device)）．
