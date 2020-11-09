@@ -86,7 +86,7 @@
 ### 独自技術
 #### ハッカソンで開発した独自機能・技術
 * 着座検知・集中力測定デバイス（ [F_2004_2](https://github.com/jphacks/F_2004_2)）
-* Arduino IDEで開発したデバイスを制御するプログラム（[Arduino.ino](https://github.com/jphacks/F_2004_2/tree/main/Device)）
+* Arduino IDEで開発したデバイスを制御するプログラム（[Device.ino](https://github.com/jphacks/F_2004_2/tree/main/Device)）
 * ユーザー情報・集中力のデータを取得、登録する自作のAPI([F_2004](https://github.com/jphacks/F_2004))
 * データベースに蓄積した集中力のデータをチャートにして表示するWebページ([F_2004_1](https://github.com/jphacks/F_2004_1))
 
