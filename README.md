@@ -94,7 +94,8 @@
 [[1] 大久保　雅史，藤村　安那："加速度センサーを利用した集中度合い推定システムの提案"，WISS2008，2008](https://www.wiss.org/WISS2008Proceedings/posters/paper0038.pdf)
 
 ## システム構成図
-![システム構成図](system_structure_diagram.png)
+
+![システム図](https://user-images.githubusercontent.com/50434558/98498565-704f2b80-228a-11eb-8478-58a714c8ede5.jpg)
 
 ## このリポジトリについて
 ### 概要
