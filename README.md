@@ -95,7 +95,7 @@
 
 ## システム構成図
 
-![システム図](https://user-images.githubusercontent.com/50434558/98498565-704f2b80-228a-11eb-8478-58a714c8ede5.jpg)
+![システム図](https://user-images.githubusercontent.com/50434558/98499883-426be600-228e-11eb-97e5-3afe32ed6a17.jpg)
 
 ## このリポジトリについて
 ### 概要
