@@ -1,6 +1,6 @@
 FROM nginx:latest
 
-#RUN sed -i 's@archive.ubuntu.com@ftp.jaist.ac.jp/pub/Linux@g' /etc/apt/sources.list
+RUN sed -i 's@archive.ubuntu.com@ftp.jaist.ac.jp/pub/Linux@g' /etc/apt/sources.list
 
 RUN mkdir -p /var/app/src
 COPY src /var/app/src
