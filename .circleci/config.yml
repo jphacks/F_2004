@@ -1,21 +1,29 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@0.2.1
-
-jobs:
-  build-and-test:
-    executor: python/default
-    steps:
-      - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
-      - run:
-          command: ./manage.py test
-          name: Test
+  aws-ecr: circleci/aws-ecr@6.1.0
+  aws-ecs: circleci/aws-ecs@0.0.8
 
 workflows:
-  main:
-    jobs:
-      - build-and-test
+    build_and_push_image:
+        jobs:
+        - aws-ecr/build-and-push-image:
+            region: AWS_REGION
+            account-url: AWS_ECR_ACCOUNT_URL
+            repo: 'jphacks_2020_backend'
+            tag: "${CIRCLE_SHA1}"
+            filters:
+                branches:
+                    only:
+                    - main
+        - aws-ecs/deploy-service-update:
+            requires:
+                - aws-ecr/build-and-push-image
+            family: 'jphacks-2020-backend'
+            cluster-name: 'jphacks-2020-backend'
+            service-name: 'jphacks-2020-backend'
+            container-image-name-updates: 'container=jphacks-2020-backend,tag=${CIRCLE_SHA1}'
+            filters:
+                branches:
+                    only:
+                        - main
