@@ -40,6 +40,19 @@ def add_user() -> object:
     return jsonify(response)
 
 
+@api.route("/users/<int:user_id>", methods=["GET"])
+def get_user(user_id: int) -> object:
+    try:
+        user = db.session.query(User).filter(User.id == user_id).first()
+    except BaseException as e:
+        print(e)
+        return jsonify({"status": "failed",
+                        "message": "Error while database session"})
+
+    response = {"status": "success", "user": user.to_dict()}
+    return jsonify(response)
+
+
 @api.route("/test", methods=["POST"])
 def test() -> object:
     body = request.get_data().decode()
