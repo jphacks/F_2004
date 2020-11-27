@@ -65,6 +65,19 @@ def get_user(user_id: int) -> object:
     return jsonify(response)
 
 
+@api.route("/users/group/<int:group_id>", methods=["GET"])
+def get_group_users(group_id: int) -> object:
+    try:
+        users= db.session.query(User).filter(User.group_id== group_id).all()
+    except BaseException as e:
+        print(e)
+        return jsonify({"status": "failed",
+                        "message": "Error while database session"})
+
+    response = {"status": "success", "users": [user.to_dict() for user in users]}
+    return jsonify(response)
+
+
 @api.route("/test", methods=["POST"])
 def test() -> object:
     body = request.get_data().decode()
