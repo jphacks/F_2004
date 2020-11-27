@@ -23,7 +23,8 @@ def get_all_users() -> object:
 
 @api.route("/users", methods=["POST"])
 def add_user() -> object:
-    if not ("id" in request.form and "name" in request.form):
+    if not (
+            "id" in request.form and "name" in request.form and "group_id" in request.form):
         return jsonify({"status": "failed",
                         "message": "Required argument is missing"})
 
@@ -35,7 +36,11 @@ def add_user() -> object:
             return jsonify({"status": "failed",
                             "message": "Requested user id exists already."})
 
-        user = User(id=int(request.form["id"]), name=request.form["name"])
+        user = User(
+            id=int(
+                request.form["id"]),
+            name=request.form["name"],
+            group_id=request.form["group_id"])
         db.session.add(user)
         db.session.commit()
     except BaseException as e:
