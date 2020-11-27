@@ -28,6 +28,13 @@ def add_user() -> object:
                         "message": "Required argument is missing"})
 
     try:
+        exist_same_id = db.session.query(User).filter(
+            User.id == request.form["id"]).first() is not None
+
+        if exist_same_id:
+            return jsonify({"status": "failed",
+                            "message": "Requested user id exists already."})
+
         user = User(id=int(request.form["id"]), name=request.form["name"])
         db.session.add(user)
         db.session.commit()
