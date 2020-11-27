@@ -9,6 +9,8 @@ class User(db.Model):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(100), nullable=False)
+    group_id = db.Column(db.Integer, nullable=False)
+    group_name = db.Column(db.String(100), nullable=True)
     is_watch = db.Column(db.Boolean, default=False, nullable=False)
     created_at = db.Column(
         db.TIMESTAMP,
@@ -21,6 +23,8 @@ class User(db.Model):
         return dict(
             id=self.id,
             name=self.name,
+            group_id=self.group_id,
+            group_name=self.group_name,
             is_watch=self.is_watch,
             created_at=self.created_at
         )
@@ -31,7 +35,11 @@ class User(db.Model):
 
 class ConcentrationValue(db.Model):
     __tablename__ = "concentration_values"
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), primary_key=True, nullable=False)
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey("users.id"),
+        primary_key=True,
+        nullable=False)
     concentration_value = db.Column(db.SMALLINT, nullable=False)
     is_sitting = db.Column(db.Boolean, nullable=False)
     created_at = db.Column(
