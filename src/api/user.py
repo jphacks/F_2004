@@ -88,12 +88,12 @@ def test() -> object:
         split_item = item.split("=")
         list[split_item[0]] = split_item[1]
 
-    user_id = list["text"].split("+")[0]
-
-    user = db.session.query(User).filter(User.id == user_id).first()
-    user.is_watch = True
-
-    db.session.commit()
+    user_names = list["text"].split("+")
+    print(user_names)
+    for user_name in user_names:
+        user = db.session.query(User).filter(User.name == user_name).first()
+        user.is_watch = True
+        db.session.commit()
 
     response = {
         "text": "ユーザーのセットが完了しました！",
@@ -106,24 +106,41 @@ def test() -> object:
 @api.route("/test2", methods=["GET"])
 def post_notification():
     post_url = 'https://slack.com/api/chat.postMessage'
+    msg = "@やっすーさん！そろそろコーヒーでも飲みませんか？"
     payload = {
-        'token': "xoxb-1506483628352-1476246434710-AKQT2LbfRb29LtsT4UugbsiE",
-        "channel_name": "#general",
-        "user_name": "t.watanabe0452",
-        "text": "Hello Flask",
+        # 'token': "xoxb-1506483628352-1476246434710-AKQT2LbfRb29LtsT4UugbsiE",
+        'token':'xoxb-1506483628352-1476246434710-awhAYeScSKJplDE0hb5Xjw9A',
+        "channel": "#general",
+        "text": msg,
         "scope": "chat:write:bot"
     }
 
     res = requests.post(post_url, payload)
-    print(res.status_code, res.text)
+    # print(payload)
+    # print(res.status_code, res.text)
 
-    return jsonify("hello")
+    # return jsonify("hello")
 
 
 @api.route("/test3", methods=["POST"])
 def test_3():
+    body = request.get_data().decode()
+    print(body)
+
+    list = {}
+    for item in body.split("&"):
+        split_item = item.split("=")
+        list[split_item[0]] = split_item[1]
+
+    user_names = list["text"].split("+")
+    print(user_names)
+    for user_name in user_names:
+        user = db.session.query(User).filter(User.name == user_name).first()
+        user.is_watch = False
+        db.session.commit()
+
     response = {
-        "text": "ユーザーのセットを解除しました！",
+        "text": "ユーザーのセットを解除しました",
         "response_type": "in_channel"
     }
 
