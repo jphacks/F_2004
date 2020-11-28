@@ -31,7 +31,6 @@ def train(results):
         print(watching_users_cv) 
 
     #ユーザーごとに、直前６個の平均と標準偏差を計算
-    results = []
     for watching_user_cv in watching_users_cv.items():
         try:
             # print(values)
