@@ -3,6 +3,7 @@ from distutils.util import strtobool
 
 from flask import Blueprint, jsonify, request
 from sqlalchemy import desc
+import requests
 
 from src.model import *
 
@@ -106,7 +107,7 @@ def add_concentration_value() -> object:
         cv_list.append(cv)
     print(cv_list)
     try:
-        results = predict()
+        results = predict.main()
         user_pattern = results[user_id]
     except:
         user_pattern = [[5,5,5,6,6,6],[0,0,1,1,1,1]]

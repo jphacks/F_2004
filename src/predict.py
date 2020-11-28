@@ -1,5 +1,5 @@
 import schedule
-import numpy
+import numpy as np
 from sqlalchemy import desc
 from src.model import *
 
